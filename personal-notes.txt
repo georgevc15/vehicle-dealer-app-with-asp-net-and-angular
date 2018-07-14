@@ -1,0 +1,25 @@
+https://www.microsoft.com/net/learn/get-started/windows
+1) npm install -g yo generator-aspnetcore-spa -> yoman creates a template for visual code when we create a new project
+2) yo aspnetcore-spa -> create the project
+   -> dotnet new angular
+   -> npm install
+   -> dotnet run (dotnet restore => echivalent npm install)
+      dotnet watch run
+   -> http://localhost:5000
+
+
+-----------------------------------
+ //Development, Staging or Production
+ setx ASPNETCORE_ENVIRONMENT "Development"
+ Control Panel -> System -> Advanced Settings
+-----------------------------------
+
+ -code . nume fisier
+
+ -----------------------------------
+
+$ npm install
+$ dotnet restore
+$ webpack --config webpack.config.vendor.js
+$ webpack 
+$ dotnet watch run
