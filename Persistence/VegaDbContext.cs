@@ -10,6 +10,7 @@ namespace vega.Persistence
             {
             }
 
-             public DbSet<Make> Makes {get; set; }
+        public DbSet<Make> Makes {get; set;}
+
     }
 }
