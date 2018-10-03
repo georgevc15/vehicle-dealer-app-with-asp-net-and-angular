@@ -7,17 +7,25 @@ import { MakeService } from '../../services/make.service';
   styleUrls: ['./vehicle-form.component.css']
 })
 export class VehicleFormComponent implements OnInit {
-   makes = '';
+   makes: any[] = [];
+   models: any = {};
+   vehicle: any = {};
   
-   constructor(private makeService: MakeService) { }
+   constructor(private makeService: MakeService) {
+    this.makes = [];
+    }
 
   ngOnInit() {
-    this.makeService.getMakes().subscribe(makes =>{
+    this.makeService.getMakes().subscribe(makes => {
       this.makes = makes
-      console.log("Makes", this.makes);
-    });
-
-     
+      //console.log("Makes", this.makes);
+    }); 
   }
 
+  onMakeChange() {
+    //console.log("Selected make", this.vehicle);
+    var selectedMake = this.makes.find(m => m.id == this.vehicle.id);
+    //console.log(selectedMake);
+    this.models = selectedMake ? selectedMake.models: [];
+  }
 }
