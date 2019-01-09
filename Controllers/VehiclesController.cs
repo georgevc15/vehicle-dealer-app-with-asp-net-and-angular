@@ -79,7 +79,13 @@ namespace vega.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVehicle(int id) {
 
-            var vehicle = await context.Vehicles.Include(v => v.Features).SingleOrDefaultAsync(v => v.id == id);
+            var vehicle = await context.Vehicles
+            .Include(v => v.Features)
+                .ThenInclude(vf => vf.Feature)
+            .Include(v => v.Model)
+                .ThenInclude(v => v.Make)  
+            .SingleOrDefaultAsync(v => v.Id == id);
+            
             if(vehicle == null)
                 return NotFound();
 
