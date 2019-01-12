@@ -67,7 +67,7 @@ namespace vega.Controllers
             if(vehicle == null)
                 return NotFound();
             
-            mapper.Map<VehicleResource, Vehicle>(vehicleResource, vehicle);
+             mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource, vehicle);
             vehicle.LastUpdate = DateTime.Now;
 
             await context.SaveChangesAsync();
