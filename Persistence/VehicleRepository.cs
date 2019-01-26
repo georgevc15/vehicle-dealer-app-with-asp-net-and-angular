@@ -1,17 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using vega.Models;
+using vega.Core;
+using vega.Core.Models;
 
 namespace vega.Persistence
 {
-    public class VehicleRepository : IvehicleRepository
-    {
-        private readonly VegaDbContext context;
-        public VehicleRepository(VegaDbContext context)
-        {
-            this.context = context;
+  public class VehicleRepository : IVehicleRepository
+  {
+    private readonly VegaDbContext context;
 
-        }
+    public VehicleRepository(VegaDbContext context)
+    {
+        this.context = context;
+    }
         public async Task<Vehicle> GetVehicle(int id, bool includeRelated = true)
         {
             if(!includeRelated)

@@ -1,11 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vega.Controllers.Resources;
-using vega.Models;
-using vega.Persistence;
+using vega.Core.Models;
+using vega.Core;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace vega.Controllers
 {
@@ -13,9 +16,9 @@ namespace vega.Controllers
     public class VehiclesController : Controller
     {
         private readonly IMapper mapper;
-        private readonly IvehicleRepository repository;
+        private readonly IVehicleRepository repository;
         private readonly IUnitOfWork unitOfWork;
-        public VehiclesController(IMapper mapper, IvehicleRepository repository, IUnitOfWork unitOfWork)
+        public VehiclesController(IMapper mapper, IVehicleRepository repository, IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
             this.repository = repository;
