@@ -1,9 +1,12 @@
 import * as Raven from 'raven-js';
-import { ErrorHandler } from "@angular/core";
+import { ErrorHandler, isDevMode } from "@angular/core";
 
 export class AppErrorHandler implements ErrorHandler {
     handleError(error: any): void {
+        if (!isDevMode())
         Raven.captureException(error.originalError || error);
-        console.log("Eroare -- An error has occured");
+        else
+            throw error;
+        ///console.log("An error has occured");
     }
 }
