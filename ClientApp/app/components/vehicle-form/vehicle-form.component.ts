@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-
-import { VehicleService } from '../../services/vehicle.service';
+import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute, Router } from '@angular/router';
+import { VehicleService } from '../../services/vehicle.service';
+import { Component, OnInit } from '@angular/core';
+import 'rxjs/add/observable/forkJoin';
+
+
 
 @Component({
   selector: 'app-vehicle-form',
@@ -34,21 +37,24 @@ export class VehicleFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.vehicleService.getVehicle(this.vehicle.id)
-      .subscribe(v => {
-        this.vehicle = v;
-      }, err => {
-        if (err.status == 404) 
-          this.router.navigate(['/home']);
-      });
+    var sources = [
+      this.vehicleService.getMakes(),
+      this.vehicleService.getFeatures()
+    ];
 
-    this.vehicleService.getMakes().subscribe(makes => 
-      this.makes = makes
-    );
+    if (this.vehicle.id)
+      sources.push(this.vehicleService.getVehicle(this.vehicle.id))
 
-    this.vehicleService.getFeatures().subscribe(features => 
-      this.features = features
-    );
+
+    Observable.forkJoin(sources).subscribe(data => {
+        this.makes = data[0];
+        this.features = data[1];
+        if (this.vehicle.id)
+          this.vehicle = data[2];
+    }, err => {
+      if (err.status == 404) 
+      this.router.navigate(['/home']);
+    });
   }
 
   onMakeChange() {
