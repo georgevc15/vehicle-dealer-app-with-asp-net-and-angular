@@ -1,7 +1,9 @@
+import * as _ from 'underscore';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VehicleService } from '../../services/vehicle.service';
 import { Component, OnInit } from '@angular/core';
+import { SaveVehicle, Vehicle } from './../app/models/vehicle';
 import 'rxjs/add/observable/forkJoin';
 
 
@@ -15,9 +17,17 @@ export class VehicleFormComponent implements OnInit {
    makes: any[] = [];
    features: any[];
    models: any = [];
-   vehicle: any = {
-     features: [],
-     contact: {}
+   vehicle: SaveVehicle = {
+    id: 0,
+    makeId: 0,
+    modelId: 0,
+    isRegistered: false, 
+    features: [],
+     contact: {
+       name: '',
+       email: '',
+       phone: ''
+     }
    };
    
   
@@ -50,11 +60,20 @@ export class VehicleFormComponent implements OnInit {
         this.makes = data[0];
         this.features = data[1];
         if (this.vehicle.id)
-          this.vehicle = data[2];
+          this.setVehicle(data[2]);
     }, err => {
       if (err.status == 404) 
       this.router.navigate(['/home']);
     });
+  }
+
+  private setVehicle(v: Vehicle) {
+    this.vehicle.id = v.id;
+    this.vehicle.makeId = v.make.id;
+    this.vehicle.modelId = v.model.id;
+    this.vehicle.isRegistered = v.isRegistered;
+    this.vehicle.contact = v.contact;
+    this.vehicle.features = _.pluck(v.features, 'id');
   }
 
   onMakeChange() {
