@@ -101,5 +101,12 @@ namespace vega.Controllers
 
             return Ok(vehicleResource);
         }
+
+        [HttpGet]
+        public Task<IEnumerable<VehicleResource>> GetVehicles()
+        {
+            return null;
+        }
+        
     }
 }
