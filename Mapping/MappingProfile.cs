@@ -25,7 +25,7 @@ namespace vega.Mapping
 
            
            //Api Resource to Domain
-           CreateMap<FilterResource, Filter>();
+           CreateMap<VehicleQueryResource, VehicleQuery>();
            CreateMap<SaveVehicleResource, Vehicle>()
             .ForMember(v => v.Id, opt => opt.Ignore())
             .ForMember(v => v.ContactName, opt => opt.MapFrom(vr => vr.Contact.Name))
