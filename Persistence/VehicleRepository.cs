@@ -66,6 +66,9 @@ namespace vega.Persistence
             if(queryObj.ModelId.HasValue)
                 query =  query.Where(v => v.ModelId == queryObj.ModelId.Value);
             
+
+            query =  query.ApplyPaging(queryObj);
+            
             return await query.ToListAsync();
         }
 
