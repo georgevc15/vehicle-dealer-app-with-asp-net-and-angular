@@ -13,7 +13,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
 import { VehicleListComponent } from './components/app/vehicle-list/vehicle-list';
-
+import { PaginationComponent } from './components/shared/pagination.component';
 
 import { VehicleService } from './services/vehicle.service';
 
@@ -27,7 +27,8 @@ Raven.config('https://875f86a31fd947578f738416d002c24c@sentry.io/1396583').insta
         FetchDataComponent,
         HomeComponent,
         VehicleFormComponent,
-        VehicleListComponent
+        VehicleListComponent,
+        PaginationComponent
     ],
     imports: [
         CommonModule,

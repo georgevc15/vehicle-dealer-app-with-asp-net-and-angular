@@ -35,3 +35,4 @@
         </tr>
     </thead>
 </table>
+<pagination [total-items]="10" [page-size]="query.PageSize" (page-changed)="onPageChange($event)"></pagination>
