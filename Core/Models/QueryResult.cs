@@ -4,8 +4,7 @@ namespace vega.Core.Models
 {
     public class QueryResult<T>
     {
-        public int ToatlItems { get; set; }
-
+        public int TotalItems { get; set; }
         public IEnumerable<T> Items { get; set; }
     }
 }
