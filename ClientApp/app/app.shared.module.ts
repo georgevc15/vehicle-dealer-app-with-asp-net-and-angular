@@ -17,6 +17,7 @@ import { PaginationComponent } from './components/shared/pagination.component';
 import { ViewVehicleComponent } from './components/view-vehicle/view-vehicle';
 
 import { VehicleService } from './services/vehicle.service';
+import { PhotoService } from './services/photo.service';
 
 
 
@@ -52,7 +53,8 @@ Raven.config('https://875f86a31fd947578f738416d002c24c@sentry.io/1396583').insta
     ],
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
-        VehicleService
+        VehicleService,
+        PhotoService
     ]
 })
 export class AppModuleShared {
