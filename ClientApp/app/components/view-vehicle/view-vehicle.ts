@@ -8,7 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: 'view-vehicle.html'
 })
 export class ViewVehicleComponent implements OnInit {
-  @ViewChild('fileInput') fileInput: ElementRef;
+  @ViewChild('fileInput')
+  fileInput!: ElementRef;
   vehicle: any;
   vehicleId: any; 
 
@@ -51,8 +52,10 @@ export class ViewVehicleComponent implements OnInit {
   uploadPhoto() {
     var nativeElement: HTMLInputElement = this.fileInput.nativeElement;
 
+    if(nativeElement.files != null)
     this.photoService.upload(this.vehicleId, nativeElement.files[0])
     .subscribe(x => console.log(x));
+
   }
 
 }
