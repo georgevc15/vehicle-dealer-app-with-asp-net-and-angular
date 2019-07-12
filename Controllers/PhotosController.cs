@@ -19,6 +19,7 @@ namespace vega.Controllers
     {
         private readonly IHostingEnvironment host;
         private readonly IVehicleRepository repository;
+        private readonly IPhotoRepository photoRepository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
         private readonly PhotoSettings photoSettings;
