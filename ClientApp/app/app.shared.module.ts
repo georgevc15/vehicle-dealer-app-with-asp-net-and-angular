@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpModule, BrowserXhr } from '@angular/http';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -18,6 +18,7 @@ import { ViewVehicleComponent } from './components/view-vehicle/view-vehicle';
 
 import { VehicleService } from './services/vehicle.service';
 import { PhotoService } from './services/photo.service';
+import { BrowserXhrWithProgress, ProgressService } from './services/progress.service';
 
 
 
@@ -53,8 +54,10 @@ Raven.config('https://875f86a31fd947578f738416d002c24c@sentry.io/1396583').insta
     ],
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
+        { provide: BrowserXhr, useClass: BrowserXhrWithProgress },
         VehicleService,
-        PhotoService
+        PhotoService,
+        ProgressService
     ]
 })
 export class AppModuleShared {

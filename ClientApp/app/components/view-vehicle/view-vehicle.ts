@@ -1,3 +1,4 @@
+import { ProgressService } from './../../services/progress.service';
 import { PhotoService } from './../../services/photo.service';
 
 import { VehicleService } from './../../services/vehicle.service';
@@ -21,6 +22,7 @@ export class ViewVehicleComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
+    private progressService: ProgressService,
     private photoService: PhotoService,
     private vehicleService: VehicleService) { 
 
@@ -59,6 +61,10 @@ export class ViewVehicleComponent implements OnInit {
 
   uploadPhoto() {
    var nativeElement: HTMLInputElement = this.fileInput.nativeElement;
+
+    this.progressService.uploadProgress
+      .subscribe(progress => console.log(progress));
+
 
    if(nativeElement.files != null) {
     this.photoService.upload(this.vehicleId, nativeElement.files[0])
