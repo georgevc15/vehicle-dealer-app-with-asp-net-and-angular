@@ -4,7 +4,7 @@ import { BrowserXhr } from '@angular/http';
 
 @Injectable()
 export class ProgressService {
-    private uploadProgress : Subject<any>;
+    private uploadProgress!: Subject<any>;
 
     startTraking() {
         this.uploadProgress =  new Subject();
