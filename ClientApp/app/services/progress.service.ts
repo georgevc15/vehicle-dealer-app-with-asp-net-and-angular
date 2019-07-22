@@ -4,10 +4,11 @@ import { BrowserXhr } from '@angular/http';
 
 @Injectable()
 export class ProgressService {
-    private uploadProgress!: Subject<any>;
+    //private uploadProgress!: Subject<any>;
+    private uploadProgress: Subject<ProgressService> = new Subject();
 
     startTraking() {
-        this.uploadProgress =  new Subject();
+       this.uploadProgress =  new Subject();
         return this.uploadProgress;
     }
 
@@ -23,7 +24,8 @@ export class ProgressService {
 @Injectable()
 export class BrowserXhrWithProgress extends BrowserXhr {
     constructor(private service: ProgressService) {
-        super(); }
+        super(); 
+    }
             build(): XMLHttpRequest {
                 var xhr: XMLHttpRequest = super.build();
                 
