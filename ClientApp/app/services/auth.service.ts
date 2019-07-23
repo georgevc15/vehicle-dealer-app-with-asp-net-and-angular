@@ -1,5 +1,4 @@
 import { tokenNotExpired } from '@angular-jwt';
-    
 import { Injectable }      from '@angular/core';
 
 // Avoid name not found warnings
