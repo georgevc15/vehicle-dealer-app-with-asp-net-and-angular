@@ -15,7 +15,7 @@ export class Auth {
   constructor() {    
     this.lock.on("authenticated", (authResult: any) => {
       console.log('authResult', authResult);  
-      localStorage.setItem('token', authResult.idToken);
+      localStorage.setItem('token', authResult.accessToken);
     });
   }
 
