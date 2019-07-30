@@ -12,10 +12,22 @@ export class Auth {
   // Configure Auth0
   lock = new Auth0Lock('YoAnWl6rRj46UfYdVu7XOuIgPUFJoHFB', 'georgevc15.auth0.com', {});
 
-  constructor() {    
+  constructor() {
+ 
+      //this.profile = JSON.parse(localStorage.getItem('profile'));
+        
     this.lock.on("authenticated", (authResult: any) => {
-      console.log('authResult', authResult);  
+     // console.log('authResult', authResult);  
       localStorage.setItem('token', authResult.accessToken);
+
+      this.lock.getUserInfo(authResult.accessToken, (error: any, profile: any) => {
+        if (error)
+          throw error;
+
+          localStorage.setItem('profile', JSON.stringify(profile));
+          this.profile = profile;
+         // console.log("profile", this.profile);
+      });
     });
   }
 
