@@ -15,6 +15,7 @@ import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.com
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list';
 import { PaginationComponent } from './components/shared/pagination.component';
 import { ViewVehicleComponent } from './components/view-vehicle/view-vehicle';
+import { AdminComponent } from './components/admin/admin.component';
 
 import { VehicleService } from './services/vehicle.service';
 import { PhotoService } from './services/photo.service';
@@ -35,7 +36,8 @@ Raven.config('https://875f86a31fd947578f738416d002c24c@sentry.io/1396583').insta
         VehicleFormComponent,
         VehicleListComponent,
         ViewVehicleComponent,
-        PaginationComponent
+        PaginationComponent,
+        AdminComponent
     ],
     imports: [
         CommonModule,
@@ -47,6 +49,7 @@ Raven.config('https://875f86a31fd947578f738416d002c24c@sentry.io/1396583').insta
             { path: 'vehicles/edit/:id', component: VehicleFormComponent },
             { path: 'vehicles/:id', component: ViewVehicleComponent },
             { path: 'vehicles', component: VehicleListComponent },
+            { path: 'admin', component: AdminComponent },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },

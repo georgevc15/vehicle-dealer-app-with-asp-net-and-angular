@@ -7,7 +7,7 @@ import Auth0Lock from '@auth0-lock';
 @Injectable()
 export class Auth {
   profile: any;
-  private roles: string[] = []; 
+  private roles: string[] = [];
 
   // Configure Auth0
   lock = new Auth0Lock('YoAnWl6rRj46UfYdVu7XOuIgPUFJoHFB', 'georgevc15.auth0.com', {});
@@ -15,10 +15,20 @@ export class Auth {
   constructor() {
  
       //this.profile = JSON.parse(localStorage.getItem('profile'));
+     var token = localStorage.getItem('token');
+    //if(token) {
+      //var jwtHelper = new jwtHelper();
+      //var decodedToken = jwtHelper.decodeToken(token);
+      //this.roles = decodedToken['https://vega.com/roles'];
+    //}
         
     this.lock.on("authenticated", (authResult: any) => {
      // console.log('authResult', authResult);  
       localStorage.setItem('token', authResult.accessToken);
+
+      var jwtHelper = new jwtHelper();
+      var decodedToken = jwtHelper.decodeToken(authResult.accessToken);
+      this.roles = decodedToken['https://vega.com/roles'];
 
       this.lock.getUserInfo(authResult.accessToken, (error: any, profile: any) => {
         if (error)
@@ -31,6 +41,9 @@ export class Auth {
     });
   }
 
+  public isInRole(roleName: any) {
+    return this.roles.indexOf(roleName) > -1;
+  }
 
   public login() {
     // Call the show method to display the widget.
