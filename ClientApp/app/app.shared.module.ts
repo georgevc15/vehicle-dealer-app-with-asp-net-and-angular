@@ -60,13 +60,12 @@ Raven.config('https://875f86a31fd947578f738416d002c24c@sentry.io/1396583').insta
     ],
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
-        { provide: BrowserXhr, useClass: BrowserXhrWithProgress },
         Auth,
         AuthGuard,
         AdminAuthGuard,
         VehicleService,
         PhotoService,
-        ProgressService
+
     ]
 })
 export class AppModuleShared {

@@ -12,6 +12,7 @@ export class AdminAuthGuard extends AuthGuard {
 
     canActivate(): any {
         var isAutheticated  =  super.canActivate();
+        
         return isAutheticated ? this.auth.isInRole('Admin') : false;
     }
 
