@@ -14,6 +14,7 @@ const treeShakableModules = [
     '@angular/router',
     '@angular-jwt',
     '@auth0-lock',
+    'angular2-chartjs',
     'raven-js',
     'underscore',
     'zone.js',
@@ -21,6 +22,7 @@ const treeShakableModules = [
 const nonTreeShakableModules = [
     'bootstrap',
     'bootstrap/dist/css/bootstrap.css',
+    'chart.js'
     'es6-promise',
     'es6-shim',
     'event-source-polyfill',
