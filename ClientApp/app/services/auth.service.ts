@@ -39,7 +39,7 @@ private readUserFromLocalStorage() {
   if (token) {
     var jwtHelper = new jwtHelper();
     var decodedToken = jwtHelper.decodeToken(token);
-    this.roles = decodedToken['https://vega.com/roles'];
+    this.roles = decodedToken['https://vega.com/roles'] || [];
   }
 }
 
