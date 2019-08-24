@@ -64,6 +64,7 @@ namespace vega
                 {
                     HotModuleReplacement = true
                 });
+
             }
             else
             {
